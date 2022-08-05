@@ -1,0 +1,37 @@
+global:
+    scrape_interval:     15s
+    external_labels:
+        monitor: 'codelab-monitor'
+
+scrape_configs:
+    - job_name: 'cardano'
+
+      static_configs:
+          - targets: ['{block_producer_ip}:{cardano_node_export_ip}']
+            labels:
+                alias: 'core'
+                type:  'cardano-node'
+          - targets: ['{relay1_ip}:{cardano_node_export_ip}']
+            labels:
+                alias: 'relay1'
+                type:  'cardano-node'
+          - targets: ['{relay2_ip}:{cardano_node_export_ip}']
+            labels:
+                alias: 'relay2'
+                type:  'cardano-node'
+
+    -   job_name: 'node'
+
+        static_configs:
+            -   targets: [ '{block_producer_ip}:{prometheus_node_exporter_ip}' ]
+                labels:
+                    alias: 'core'
+                    type: 'host-system'
+            -   targets: [ '{relay1_ip }:{prometheus_node_exporter_ip}' ]
+                labels:
+                    alias: 'relay1'
+                    type: 'host-system'
+            -   targets: [ '{relay2_ip}:{prometheus_node_exporter_ip}' ]
+                labels:
+                    alias: 'relay2'
+                    type: 'host-system'
