@@ -1,0 +1,1 @@
+curl https://js.adapools.org/pools/{pool_id}/summary.json | jq '.data | del(.pool_id_bech32, .hist_bpe, .handles, .hist_roa, .db_ticker, .db_name, .db_url, .ticker_orig, .group_basic, .pool_id, .direct, .db_description, .tax_ratio_old, .tax_fix_old)' | tr -d \"{},: | awk NF | sed -e 's/^[ \t]*/adapools_/' > /var/lib/prometheus/node-exporter/adapools/adapools.prom
