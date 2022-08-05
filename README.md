@@ -1,5 +1,5 @@
 ## Stake Green [STKGR] cardano nodes monitoring dashboards
-Grafana dashboards created to monitor Cardano Block Producer en Relay nodes and blockchain statistics of your Pool. This setup assume you are running 2 relay nodes and 1 block producer.
+Grafana dashboards created to monitor Cardano Block Producer en Relay nodes and blockchain statistics of your Pool. This setup assumes you are running 2 relay nodes and 1 block producer. 
 
 ### Screenshots of dashboards
 ![image](./assets/performance_stats_stake_green.png)
@@ -58,4 +58,4 @@ It is also advisable to close of traffic to your Grafana node on the https port 
 MIT
 
 #### Author Information
-This monitoring setup is created by Stake Green. [https://www.stakegreen.com/](https://www.stakegreen.com/)
+This monitoring setup is created by Stake Green. [https://www.stakegreen.com/](https://www.stakegreen.com/) We would like to thank Staking Rocks pool for sharing their Grafana dashboard as we have used that as our starting point.
