@@ -234,7 +234,7 @@
                         "uid": "BNRcnhbnk"
                     },
                     "editorMode": "code",
-                    "expr": "adapools_active_stake{alias=\"relay1\"}/1000000",
+                    "expr": "adapools_stake_active{alias=\"relay1\"}/1000000",
                     "legendFormat": "Active stake",
                     "range": true,
                     "refId": "A"
@@ -245,7 +245,7 @@
                         "uid": "BNRcnhbnk"
                     },
                     "editorMode": "code",
-                    "expr": "adapools_total_stake{alias=\"relay1\"}/1000000",
+                    "expr": "adapools_stake{alias=\"relay1\"}/1000000",
                     "hide": false,
                     "legendFormat": "Live stake",
                     "range": true,
@@ -513,7 +513,7 @@
                         "uid": "BNRcnhbnk"
                     },
                     "editorMode": "builder",
-                    "expr": "adapools_rank{alias=\"relay1\"}",
+                    "expr": "adapools_position{alias=\"relay1\"}",
                     "legendFormat": "Adapools rank",
                     "range": true,
                     "refId": "A"
@@ -601,8 +601,8 @@
                         "type": "prometheus",
                         "uid": "BNRcnhbnk"
                     },
-                    "editorMode": "builder",
-                    "expr": "adapools_luck_lifetime{alias=\"relay1\"}",
+                    "editorMode": "code",
+                    "expr": "adapools_luck_lifetime{alias=\"relay1\"}*100",
                     "legendFormat": "Adapools luck",
                     "range": true,
                     "refId": "A"
@@ -691,7 +691,7 @@
                         "uid": "BNRcnhbnk"
                     },
                     "editorMode": "builder",
-                    "expr": "adapools_roa{alias=\"relay1\"}",
+                    "expr": "adapools_roa_short{alias=\"relay1\"}",
                     "legendFormat": "ROA (last 30 days)",
                     "range": true,
                     "refId": "A"
@@ -790,6 +790,7 @@
             "type": "timeseries"
         }
     ],
+    "refresh": "5s",
     "schemaVersion": 36,
     "style": "dark",
     "tags": [],
@@ -804,6 +805,6 @@
     "timezone": "",
     "title": "Stake Green (STKGR) Pool Stats",
     "uid": "7ox6CPk4z",
-    "version": 7,
+    "version": 10,
     "weekStart": ""
 }
