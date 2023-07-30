@@ -32,14 +32,19 @@
             "tags": [],
             "title": "View stakepool homepage",
             "type": "link",
-            "url": "https://www.stakgreen.com"
+            "url": "https://www.stakegreen.com"
         },
         {
+            "asDropdown": false,
             "icon": "external link",
+            "includeVars": false,
+            "keepTime": false,
             "tags": [],
-            "title": "View details on ADAPools.org",
+            "targetBlank": true,
+            "title": "Details on cexplorer.io",
+            "tooltip": "",
             "type": "link",
-            "url": "https://adapools.org/pool/1ae6ca324f47cdc2b95bb7ca15e59e56666f5112136d83f069bf583a"
+            "url": "https://cexplorer.io/pool/pool1rtnv5vj0glxu9w2mkl9ptev72enx75gjzdkc8urfhavr5reah0c"
         }
     ],
     "liveNow": false,
@@ -101,7 +106,7 @@
                     "zoneFormat": "offset"
                 }
             },
-            "pluginVersion": "1.3.0",
+            "pluginVersion": "2.1.0",
             "refreshSettings": {
                 "syncWithDashboard": true
             },
@@ -177,7 +182,7 @@
                 "showThresholdLabels": false,
                 "showThresholdMarkers": true
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -266,7 +271,7 @@
                 },
                 "showUnfilled": true
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -345,7 +350,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -424,7 +429,7 @@
                 },
                 "showUnfilled": true
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -503,7 +508,7 @@
                 },
                 "showUnfilled": true
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "expr": "100 - (avg by(alias) (irate(node_cpu_seconds_total{mode=\"idle\",alias=\"core\"}[1m])) * 100)",
@@ -602,7 +607,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -658,7 +663,7 @@
             },
             "gridPos": {
                 "h": 3,
-                "w": 4,
+                "w": 2,
                 "x": 18,
                 "y": 2
             },
@@ -684,7 +689,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -701,6 +706,87 @@
                 }
             ],
             "title": "Core TX's processed",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "BNRcnhbnk"
+            },
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "decimals": 0,
+                    "mappings": [
+                        {
+                            "options": {
+                                "match": "null",
+                                "result": {
+                                    "text": "N/A"
+                                }
+                            },
+                            "type": "special"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "blue",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "locale"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 2,
+                "x": 20,
+                "y": 2
+            },
+            "id": 155,
+            "links": [],
+            "maxDataPoints": 100,
+            "options": {
+                "colorMode": "background",
+                "fieldOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ]
+                },
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.3.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "BNRcnhbnk"
+                    },
+                    "editorMode": "code",
+                    "exemplar": false,
+                    "expr": "cardano_node_metrics_served_block_count_int{alias=\"core\"}",
+                    "hide": false,
+                    "instant": true,
+                    "interval": "",
+                    "legendFormat": "Core",
+                    "refId": "A"
+                }
+            ],
+            "title": "Core Served Blocks",
             "type": "stat"
         },
         {
@@ -773,7 +859,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "expr": "sum(time() - node_boot_time_seconds{alias=\"core\"})",
@@ -833,7 +919,7 @@
                 },
                 "textMode": "value"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -841,7 +927,7 @@
                         "uid": "BNRcnhbnk"
                     },
                     "exemplar": true,
-                    "expr": "adapools_active_stake{alias=\"relay1\"}/1000000",
+                    "expr": "adapools_stake_active{alias=\"relay1\"}/1000000",
                     "interval": "",
                     "legendFormat": "",
                     "refId": "A"
@@ -893,7 +979,7 @@
                 },
                 "textMode": "value"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -901,7 +987,7 @@
                         "uid": "BNRcnhbnk"
                     },
                     "exemplar": true,
-                    "expr": "adapools_total_stake{alias=\"relay1\"}/1000000",
+                    "expr": "adapools_stake{alias=\"relay1\"}/1000000",
                     "interval": "",
                     "legendFormat": "",
                     "refId": "A"
@@ -975,7 +1061,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -1051,7 +1137,7 @@
                 },
                 "showUnfilled": true
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "expr": "100 - (avg by(alias) (irate(node_cpu_seconds_total{mode=\"idle\",alias=\"relay1\"}[1m])) * 100)",
@@ -1151,7 +1237,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -1206,7 +1292,7 @@
             },
             "gridPos": {
                 "h": 3,
-                "w": 4,
+                "w": 2,
                 "x": 18,
                 "y": 5
             },
@@ -1232,7 +1318,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -1249,6 +1335,87 @@
                 }
             ],
             "title": "Relay1 TX's processed",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "BNRcnhbnk"
+            },
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "decimals": 0,
+                    "mappings": [
+                        {
+                            "options": {
+                                "match": "null",
+                                "result": {
+                                    "text": "N/A"
+                                }
+                            },
+                            "type": "special"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "blue",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "locale"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 2,
+                "x": 20,
+                "y": 5
+            },
+            "id": 156,
+            "links": [],
+            "maxDataPoints": 100,
+            "options": {
+                "colorMode": "background",
+                "fieldOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ]
+                },
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.3.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "BNRcnhbnk"
+                    },
+                    "editorMode": "code",
+                    "exemplar": false,
+                    "expr": "cardano_node_metrics_served_block_count_int{alias=\"relay1\"}",
+                    "hide": false,
+                    "instant": true,
+                    "interval": "",
+                    "legendFormat": "Core",
+                    "refId": "A"
+                }
+            ],
+            "title": "Relay1 Served Blocks",
             "type": "stat"
         },
         {
@@ -1321,7 +1488,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "expr": "sum(time() - node_boot_time_seconds{alias=\"relay1\"})",
@@ -1389,7 +1556,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -1397,7 +1564,7 @@
                         "uid": "BNRcnhbnk"
                     },
                     "exemplar": true,
-                    "expr": "adapools_pledged{alias=\"relay1\"}/1000000",
+                    "expr": "adapools_pledge{alias=\"relay1\"}/1000000",
                     "interval": "",
                     "legendFormat": "ADA",
                     "refId": "A"
@@ -1474,7 +1641,7 @@
                 },
                 "textMode": "value"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -1551,7 +1718,7 @@
                 },
                 "showUnfilled": true
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "expr": "100 - (avg by(alias) (irate(node_cpu_seconds_total{mode=\"idle\",alias=\"relay2\"}[1m])) * 100)",
@@ -1652,7 +1819,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -1708,7 +1875,7 @@
             },
             "gridPos": {
                 "h": 3,
-                "w": 4,
+                "w": 2,
                 "x": 18,
                 "y": 8
             },
@@ -1734,7 +1901,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "expr": "cardano_node_metrics_txsProcessedNum_int{alias=\"relay2\"}",
@@ -1746,6 +1913,87 @@
                 }
             ],
             "title": "Relay2 TX's processed",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "BNRcnhbnk"
+            },
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "decimals": 0,
+                    "mappings": [
+                        {
+                            "options": {
+                                "match": "null",
+                                "result": {
+                                    "text": "N/A"
+                                }
+                            },
+                            "type": "special"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "blue",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "locale"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 2,
+                "x": 20,
+                "y": 8
+            },
+            "id": 157,
+            "links": [],
+            "maxDataPoints": 100,
+            "options": {
+                "colorMode": "background",
+                "fieldOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ]
+                },
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "9.3.2",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "BNRcnhbnk"
+                    },
+                    "editorMode": "code",
+                    "exemplar": false,
+                    "expr": "cardano_node_metrics_served_block_count_int{alias=\"relay2\"}",
+                    "hide": false,
+                    "instant": true,
+                    "interval": "",
+                    "legendFormat": "Core",
+                    "refId": "A"
+                }
+            ],
+            "title": "Relay2 Served Blocks",
             "type": "stat"
         },
         {
@@ -1817,7 +2065,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "expr": "sum(time() - node_boot_time_seconds{alias=\"relay2\"})",
@@ -1877,7 +2125,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -1949,7 +2197,7 @@
                 },
                 "textMode": "auto"
             },
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "targets": [
                 {
                     "datasource": {
@@ -1957,14 +2205,14 @@
                         "uid": "BNRcnhbnk"
                     },
                     "exemplar": true,
-                    "expr": "adapools_rank{alias=\"relay1\"}",
+                    "expr": "adapools_position{alias=\"relay1\"}",
                     "instant": false,
                     "interval": "",
                     "legendFormat": "",
                     "refId": "A"
                 }
             ],
-            "title": "AdaPools.org Rank",
+            "title": "Cexplorer.io Rank",
             "type": "stat"
         },
         {
@@ -2012,7 +2260,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -2126,7 +2374,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -2246,7 +2494,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -2372,7 +2620,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 5,
             "points": false,
             "renderer": "flot",
@@ -2503,7 +2751,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 5,
             "points": false,
             "renderer": "flot",
@@ -2634,7 +2882,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 5,
             "points": false,
             "renderer": "flot",
@@ -2768,7 +3016,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -2782,12 +3030,25 @@
                         "type": "prometheus",
                         "uid": "BNRcnhbnk"
                     },
+                    "editorMode": "code",
                     "exemplar": true,
-                    "expr": "cardano_node_metrics_connectedPeers_int{alias=\"core\"}",
+                    "expr": "cardano_node_metrics_peers_connectedPeers_int{alias=\"core\"}",
                     "instant": false,
                     "interval": "",
-                    "legendFormat": "{{alias}}",
+                    "legendFormat": "Outgoing",
                     "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "BNRcnhbnk"
+                    },
+                    "editorMode": "builder",
+                    "expr": "custom_stats_incoming_peers{alias=\"core\"}",
+                    "hide": false,
+                    "legendFormat": "Incoming",
+                    "range": true,
+                    "refId": "B"
                 }
             ],
             "thresholds": [],
@@ -2806,6 +3067,7 @@
             },
             "yaxes": [
                 {
+                    "$$hashKey": "object:349",
                     "decimals": 0,
                     "format": "short",
                     "label": "",
@@ -2813,6 +3075,7 @@
                     "show": true
                 },
                 {
+                    "$$hashKey": "object:350",
                     "format": "short",
                     "label": "JAWS_S1_Relays",
                     "logBase": 1,
@@ -2871,7 +3134,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -2885,11 +3148,25 @@
                         "type": "prometheus",
                         "uid": "BNRcnhbnk"
                     },
+                    "editorMode": "code",
                     "exemplar": true,
-                    "expr": "cardano_node_metrics_connectedPeers_int{alias=\"relay1\"}",
+                    "expr": "cardano_node_metrics_peers_connectedPeers_int{alias=\"relay1\"}",
                     "interval": "",
-                    "legendFormat": "{{alias}}",
+                    "legendFormat": "Outgoing ",
+                    "range": true,
                     "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "BNRcnhbnk"
+                    },
+                    "editorMode": "builder",
+                    "expr": "custom_stats_incoming_peers{alias=\"relay1\"}",
+                    "hide": false,
+                    "legendFormat": "Incoming",
+                    "range": true,
+                    "refId": "B"
                 }
             ],
             "thresholds": [],
@@ -2908,6 +3185,7 @@
             },
             "yaxes": [
                 {
+                    "$$hashKey": "object:374",
                     "decimals": 0,
                     "format": "short",
                     "label": "",
@@ -2915,6 +3193,7 @@
                     "show": true
                 },
                 {
+                    "$$hashKey": "object:375",
                     "format": "short",
                     "label": "JAWS_S1_Relays",
                     "logBase": 1,
@@ -2973,7 +3252,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -2987,11 +3266,25 @@
                         "type": "prometheus",
                         "uid": "BNRcnhbnk"
                     },
+                    "editorMode": "code",
                     "exemplar": true,
-                    "expr": "cardano_node_metrics_connectedPeers_int{alias=\"relay2\"}",
+                    "expr": "cardano_node_metrics_peers_connectedPeers_int{alias=\"relay2\"}",
                     "interval": "",
-                    "legendFormat": "{{alias}}",
+                    "legendFormat": "Outgoing",
+                    "range": true,
                     "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "BNRcnhbnk"
+                    },
+                    "editorMode": "builder",
+                    "expr": "custom_stats_incoming_peers{alias=\"relay2\"}",
+                    "hide": false,
+                    "legendFormat": "Incoming",
+                    "range": true,
+                    "refId": "B"
                 }
             ],
             "thresholds": [],
@@ -3010,6 +3303,7 @@
             },
             "yaxes": [
                 {
+                    "$$hashKey": "object:422",
                     "decimals": 0,
                     "format": "short",
                     "label": "",
@@ -3017,6 +3311,7 @@
                     "show": true
                 },
                 {
+                    "$$hashKey": "object:423",
                     "format": "short",
                     "label": "JAWS_S1_Relays",
                     "logBase": 1,
@@ -3068,7 +3363,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -3161,7 +3456,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -3255,7 +3550,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -3351,7 +3646,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 5,
             "points": false,
             "renderer": "flot",
@@ -3486,7 +3781,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 5,
             "points": false,
             "renderer": "flot",
@@ -3621,7 +3916,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 5,
             "points": false,
             "renderer": "flot",
@@ -3755,7 +4050,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -3846,7 +4141,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -3941,7 +4236,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4031,7 +4326,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4127,7 +4422,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4223,7 +4518,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4317,7 +4612,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4406,7 +4701,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4495,7 +4790,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4584,7 +4879,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4677,7 +4972,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4766,7 +5061,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4855,7 +5150,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -4947,7 +5242,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5039,7 +5334,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5128,7 +5423,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5220,7 +5515,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5312,7 +5607,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5403,7 +5698,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5495,7 +5790,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5587,7 +5882,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5676,7 +5971,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5769,7 +6064,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5862,7 +6157,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -5955,7 +6250,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -6051,7 +6346,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -6147,7 +6442,7 @@
                 "alertThreshold": true
             },
             "percentage": false,
-            "pluginVersion": "9.0.5",
+            "pluginVersion": "9.3.2",
             "pointradius": 2,
             "points": false,
             "renderer": "flot",
@@ -6211,6 +6506,8 @@
                         "mode": "palette-classic"
                     },
                     "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
                         "axisLabel": "",
                         "axisPlacement": "auto",
                         "barAlignment": 0,
@@ -6260,12 +6557,289 @@
                 "x": 0,
                 "y": 90
             },
+            "id": 158,
+            "options": {
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "BNRcnhbnk"
+                    },
+                    "editorMode": "builder",
+                    "expr": "cardano_node_metrics_served_block_count_int{alias=\"core\"}",
+                    "format": "time_series",
+                    "legendFormat": "core node: Missed slot leader checks",
+                    "range": true,
+                    "refId": "A"
+                }
+            ],
+            "title": "Core node: Served Blocks",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "BNRcnhbnk"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 8,
+                "y": 90
+            },
+            "id": 159,
+            "options": {
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "BNRcnhbnk"
+                    },
+                    "editorMode": "builder",
+                    "expr": "cardano_node_metrics_served_block_count_int{alias=\"relay1\"}",
+                    "format": "time_series",
+                    "legendFormat": "core node: Missed slot leader checks",
+                    "range": true,
+                    "refId": "A"
+                }
+            ],
+            "title": "Relay1: Served Blocks",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "BNRcnhbnk"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 16,
+                "y": 90
+            },
+            "id": 160,
+            "options": {
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "BNRcnhbnk"
+                    },
+                    "editorMode": "builder",
+                    "expr": "cardano_node_metrics_served_block_count_int{alias=\"relay2\"}",
+                    "format": "time_series",
+                    "legendFormat": "core node: Missed slot leader checks",
+                    "range": true,
+                    "refId": "A"
+                }
+            ],
+            "title": "Relay2: Served Blocks",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "BNRcnhbnk"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 0,
+                "y": 98
+            },
             "id": 154,
             "options": {
                 "legend": {
                     "calcs": [],
                     "displayMode": "list",
-                    "placement": "bottom"
+                    "placement": "bottom",
+                    "showLegend": true
                 },
                 "tooltip": {
                     "mode": "single",
@@ -6290,8 +6864,8 @@
             "type": "timeseries"
         }
     ],
-    "refresh": "",
-    "schemaVersion": 36,
+    "refresh": false,
+    "schemaVersion": 37,
     "style": "dark",
     "tags": [],
     "templating": {
@@ -6325,9 +6899,9 @@
             "30d"
         ]
     },
-    "timezone": "Europe/Amsterdam",
+    "timezone": "utc",
     "title": "Stake Green [STKGR] Performance Monitoring (Core + Relay)",
     "uid": "PHRCK",
-    "version": 39,
+    "version": 51,
     "weekStart": ""
 }
